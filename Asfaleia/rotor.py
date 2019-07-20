@@ -34,3 +34,9 @@ class Rotor:
     #Function is used to manually get a value from the rotor(usless)
     def get_current_value(self):
         return self.current_value
+    
+    def __str__(self):
+        return 'This is a default parent class of a rotor'
+    
+    def __repr__(self):
+        return '{self.__class__.__name__}({self.next_rotor})'.format(self=self)
