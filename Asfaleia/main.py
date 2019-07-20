@@ -17,7 +17,8 @@ There are different function you can use:
 from asfaleia_machine import Asfaleia_Machine
 
 current_machine = Asfaleia_Machine()
-current_machine.encode_sentence('Hi!')
+encoded_sentence = ''.join(current_machine.encode_sentence('Hi!'))
 
 current_machine.reset()
-current_machine.decode_sentence('dzhew!')
+decoded_sentence = ''.join(current_machine.decode_sentence(encoded_sentence))
+print(decoded_sentence)

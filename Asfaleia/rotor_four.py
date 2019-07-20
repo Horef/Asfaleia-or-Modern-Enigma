@@ -271,7 +271,10 @@ class Rotor_Four(Rotor):
         elif self.current_value == 26:
             for pair in self.val_twenty_six_shuffler:
                 letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-        
-        self.increase_current_value()
 
-
+    
+    def __str__(self):
+        return 'This is a {self.__class__.__name__} with a value of {self.current_value}'.format(self=self)
+    
+    def __repr__(self):
+        return '{self.__class__.__name__}({self.next_rotor})'.format(self=self)

@@ -13,3 +13,9 @@ class Switcher():
         
     def switch(self, letters, letter_one, letter_two):
         letters[letter_one], letters[letter_two] = letters.pop(letter_two), letters.pop(letter_one)
+        
+    def __str__(self):
+        return 'This is a switcher, which switches {self.letter_one} with {self.letter_two}'.format(self=self)
+    
+    def __repr__(self):
+        return '{self.__class__.__name__}({self.letters}, \'{self.letter_one}\', \'{self.letter_two}\')'.format(self=self)

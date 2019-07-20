@@ -70,31 +70,63 @@ class Asfaleia_Machine():
         
     #Function used to uncode a sentence 
     def encode_sentence(self, sentence):
+        encoded_message = []
+        
         for letter in sentence.lower():
             if letter not in self.letters:
-                print(letter, end = '')
+                encoded_message.append(letter)
                 continue
             
+            # Values of rotors are increased only on one direction
+            # so the values are not increased when the letters are
+            # going all the way back
             self.rotor_one.shuffle_letters(self.letters)
-            self.rotor_two.shuffle_letters(self.letters)
-            self.rotor_three.shuffle_letters(self.letters)
+            self.rotor_one.increase_current_value()
             
-            print(self.letters[letter.lower()], end = '')
+            self.rotor_two.shuffle_letters(self.letters)
+            self.rotor_two.increase_current_value()
+            
+            self.rotor_three.shuffle_letters(self.letters)
+            self.rotor_three.increase_current_value()
+            
+            self.rotor_three.shuffle_letters(self.letters)
+            self.rotor_two.shuffle_letters(self.letters)
+            self.rotor_one.shuffle_letters(self.letters)
+            
+            encoded_message.append(self.letters[letter.lower()])
+            
+        return encoded_message
     
     #Function used to decode a sentence 
     def decode_sentence(self, sentence):
+        decoded_message = []
+        
         for letter in sentence.lower():
             if letter not in self.letters:
-                print(letter, end = '')
+                decoded_message.append(letter)
                 continue
             
+            # Values of rotors are increased only on one direction
+            # so the values are not increased when the letters are
+            # going all the way back
             self.rotor_one.shuffle_letters(self.letters)
+            self.rotor_one.increase_current_value()
+            
             self.rotor_two.shuffle_letters(self.letters)
+            self.rotor_two.increase_current_value()
+            
             self.rotor_three.shuffle_letters(self.letters)
+            self.rotor_three.increase_current_value()
+            
+            self.rotor_three.shuffle_letters(self.letters)
+            self.rotor_two.shuffle_letters(self.letters)
+            self.rotor_one.shuffle_letters(self.letters)
             
             for x, y in self.letters.items():
                 if y == letter:
-                    print(x, end = '')
+                    decoded_message.append(x)
+                    
+        return decoded_message
             
     #Function used to manually change the values of rotors
     def set_rotors(self, val_one, val_two, val_three):
@@ -105,3 +137,9 @@ class Asfaleia_Machine():
     #Function used reset the machine to its starting form(init)
     def reset(self):
         self.__init__()
+        
+    def __str__(self):
+        return 'This is an {self.__class__.__name__} class with properties of {self.rotor_one.__class__.__name__} - {self.rotor_one.value}, {self.rotor_two.__class__.__name__} - {self.rotor_two.value}, {self.rotor_three.__class__.__name__} - {self.rotor_three.value}'
+    
+    def __repr__(self):
+        return '{self.__class__.__name__}()'
