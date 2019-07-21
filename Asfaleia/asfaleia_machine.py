@@ -60,16 +60,8 @@ class Asfaleia_Machine():
         self.switcher_nine = Switcher()
         self.switcher_nine.switch(self.letters, 's', 'k')
         
-    #Function used to encode a letter
-    def encode_letter(self, letter):
-        self.rotor_one.shuffle_letters(self.letters)
-        self.rotor_two.shuffle_letters(self.letters)
-        self.rotor_three.shuffle_letters(self.letters)
-        
-        print(self.letters[letter.lower()])
-        
     #Function used to uncode a sentence 
-    def encode_sentence(self, sentence):
+    def encode(self, sentence):
         encoded_message = []
         
         for letter in sentence.lower():
@@ -82,12 +74,8 @@ class Asfaleia_Machine():
             # going all the way back
             self.rotor_one.shuffle_letters(self.letters)
             self.rotor_one.increase_current_value()
-            
             self.rotor_two.shuffle_letters(self.letters)
-            self.rotor_two.increase_current_value()
-            
             self.rotor_three.shuffle_letters(self.letters)
-            self.rotor_three.increase_current_value()
             
             self.rotor_three.shuffle_letters(self.letters)
             self.rotor_two.shuffle_letters(self.letters)
@@ -95,10 +83,10 @@ class Asfaleia_Machine():
             
             encoded_message.append(self.letters[letter.lower()])
             
-        return encoded_message
+        return ''.join(encoded_message)
     
     #Function used to decode a sentence 
-    def decode_sentence(self, sentence):
+    def decode(self, sentence):
         decoded_message = []
         
         for letter in sentence.lower():
@@ -111,12 +99,8 @@ class Asfaleia_Machine():
             # going all the way back
             self.rotor_one.shuffle_letters(self.letters)
             self.rotor_one.increase_current_value()
-            
             self.rotor_two.shuffle_letters(self.letters)
-            self.rotor_two.increase_current_value()
-            
             self.rotor_three.shuffle_letters(self.letters)
-            self.rotor_three.increase_current_value()
             
             self.rotor_three.shuffle_letters(self.letters)
             self.rotor_two.shuffle_letters(self.letters)
@@ -126,20 +110,34 @@ class Asfaleia_Machine():
                 if y == letter:
                     decoded_message.append(x)
                     
-        return decoded_message
+        return ''.join(decoded_message)
             
     #Function used to manually change the values of rotors
-    def set_rotors(self, val_one, val_two, val_three):
+    def config(self, val_one, val_two, val_three):
         self.rotor_one.set_current_value(val_one)
         self.rotor_two.set_current_value(val_two)
         self.rotor_three.set_current_value(val_three)
+        
+        self.reset_letters()
         
     #Function used reset the machine to its starting form(init)
     def reset(self):
         self.__init__()
         
+    #Function used to reset letters
+    def reset_letters(self):
+        self.letters = {'a':'a','b':'b','c':'c',
+               'd':'d','e':'e','f':'f',
+               'g':'g','h':'h','i':'i', 
+               'j':'j','k':'k','l':'l',
+               'm':'m','n':'n','o':'o',
+               'p':'p','q':'q','r':'r',
+               's':'s','t':'t','u':'u',
+               'v':'v','w':'w','x':'x',
+               'y':'y','z':'z'}
+        
     def __str__(self):
-        return 'This is an {self.__class__.__name__} class with properties of {self.rotor_one.__class__.__name__} - {self.rotor_one.value}, {self.rotor_two.__class__.__name__} - {self.rotor_two.value}, {self.rotor_three.__class__.__name__} - {self.rotor_three.value}'
+        return 'This is an {self.__class__.__name__} class with properties of {self.rotor_one.__class__.__name__} - {self.rotor_one.current_value}, {self.rotor_two.__class__.__name__} - {self.rotor_two.current_value}, {self.rotor_three.__class__.__name__} - {self.rotor_three.current_value}'.format(self=self)
     
     def __repr__(self):
-        return '{self.__class__.__name__}()'
+        return '{self.__class__.__name__}()'.format(self=self)
