@@ -62,6 +62,9 @@ class Asfaleia_Machine():
         
     #Function used to uncode a sentence 
     def encode(self, sentence):
+        if not isinstance(sentence, str):
+                raise TypeError('You shoud use string to encode')
+        
         encoded_message = []
         
         for letter in sentence.lower():
@@ -87,6 +90,9 @@ class Asfaleia_Machine():
     
     #Function used to decode a sentence 
     def decode(self, sentence):
+        if not isinstance(sentence, str):
+                raise TypeError('You shoud use string to encode')
+        
         decoded_message = []
         
         for letter in sentence.lower():

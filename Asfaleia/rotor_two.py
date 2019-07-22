@@ -173,109 +173,37 @@ class Rotor_Two(Rotor):
                                         ('k','a'), ('c','m'), 
                                         ('g','d')]
     
+        self.shuffler_dict = {
+                1: self.val_one_shuffler,
+                2: self.val_two_shuffler,
+                3: self.val_three_shuffler,
+                4: self.val_four_shuffler,
+                5: self.val_five_shuffler,
+                6: self.val_six_shuffler,
+                7: self.val_seven_shuffler,
+                8: self.val_eight_shuffler,
+                9: self.val_nine_shuffler,
+                10: self.val_ten_shuffler,
+                11: self.val_eleven_shuffler,
+                12: self.val_twelve_shuffler,
+                13: self.val_thirteen_shuffler,
+                14: self.val_fourteen_shuffler,
+                15: self.val_fifteen_shuffler,
+                16: self.val_sixteen_shuffler,
+                17: self.val_seventeen_shuffler,
+                18: self.val_eighteen_shuffler,
+                19: self.val_nineteen_shuffler,
+                20: self.val_twenty_shuffler,
+                21: self.val_twenty_one_shuffler,
+                22: self.val_twenty_two_shuffler,
+                23: self.val_twenty_three_shuffler,
+                24: self.val_twenty_four_shuffler,
+                25: self.val_twenty_five_shuffler,
+                26: self.val_twenty_six_shuffler
+        }
+    
     def shuffle_letters(self, letters):
-        if self.current_value == 1:
-            for pair in self.val_one_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 2:
-            for pair in self.val_two_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 3:
-            for pair in self.val_three_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 4:
-            for pair in self.val_four_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 5:
-            for pair in self.val_five_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 6:
-            for pair in self.val_six_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 7:
-            for pair in self.val_seven_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 8:
-            for pair in self.val_eight_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 9:
-            for pair in self.val_nine_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 10:
-            for pair in self.val_ten_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 11:
-            for pair in self.val_eleven_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 12:
-            for pair in self.val_twelve_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 13:
-            for pair in self.val_thirteen_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 14:
-            for pair in self.val_fourteen_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 15:
-            for pair in self.val_fifteen_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 16:
-            for pair in self.val_sixteen_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 17:
-            for pair in self.val_seventeen_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 18:
-            for pair in self.val_eighteen_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 19:
-            for pair in self.val_nineteen_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 20:
-            for pair in self.val_twenty_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 21:
-            for pair in self.val_twenty_one_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 22:
-            for pair in self.val_twenty_two_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 23:
-            for pair in self.val_twenty_three_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 24:
-            for pair in self.val_twenty_four_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 25:
-            for pair in self.val_twenty_five_shuffler:
-                letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
-                
-        elif self.current_value == 26:
-            for pair in self.val_twenty_six_shuffler:
+        for pair in self.shuffler_dict[self.current_value]:
                 letters[pair[0]], letters[pair[1]] = letters[pair[1]], letters[pair[0]]
         
 
