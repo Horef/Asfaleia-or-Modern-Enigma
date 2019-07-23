@@ -15,7 +15,25 @@ from rotor_five import Rotor_Five
 from switcher import Switcher
 
 class Asfaleia_Machine():
-    def __init__(self):
+    def __init__(self, r_one=1, r_two=1, r_three=1, r_four=1, r_five=1):
+        
+        #This is a part of code used to check for values entered to be 
+        #compatible with the program
+        if not isinstance(r_one, int):
+            raise TypeError('Rotor values should be entered as integers')
+            
+        if not isinstance(r_two, int):
+            raise TypeError('Rotor values should be entered as integers')
+            
+        if not isinstance(r_three, int):
+            raise TypeError('Rotor values should be entered as integers')
+            
+        if not isinstance(r_four, int):
+            raise TypeError('Rotor values should be entered as integers')
+            
+        if not isinstance(r_five, int):
+            raise TypeError('Rotor values should be entered as integers')
+        
         #Dictionary of all the letters and coresponding to them
         self.letters = {'a':'a','b':'b','c':'c',
                'd':'d','e':'e','f':'f',
@@ -28,9 +46,9 @@ class Asfaleia_Machine():
                'y':'y','z':'z'}
         
         #All the rotors are created from the least to first, it is important
-        self.rotor_three = Rotor_Three(None)
-        self.rotor_two = Rotor_Two(self.rotor_three)
-        self.rotor_one = Rotor_One(self.rotor_two)
+        self.rotor_three = Rotor_One(None, r_three)
+        self.rotor_two = Rotor_Five(self.rotor_three, r_two)
+        self.rotor_one = Rotor_Three(self.rotor_two, r_one)
         
         #Swithers are created and used here
         self.switcher_one = Switcher()
@@ -63,7 +81,7 @@ class Asfaleia_Machine():
     #Function used to uncode a sentence 
     def encode(self, sentence):
         if not isinstance(sentence, str):
-                raise TypeError('You shoud use string to encode')
+                raise TypeError('You shoud use strings to encode')
         
         encoded_message = []
         
@@ -85,13 +103,13 @@ class Asfaleia_Machine():
             self.rotor_one.shuffle_letters(self.letters)
             
             encoded_message.append(self.letters[letter.lower()])
-            
+        
         return ''.join(encoded_message)
     
     #Function used to decode a sentence 
     def decode(self, sentence):
         if not isinstance(sentence, str):
-                raise TypeError('You shoud use string to encode')
+                raise TypeError('You shoud use strings to encode')
         
         decoded_message = []
         
@@ -115,14 +133,27 @@ class Asfaleia_Machine():
             for x, y in self.letters.items():
                 if y == letter:
                     decoded_message.append(x)
-                    
+        
         return ''.join(decoded_message)
             
     #Function used to manually change the values of rotors
     def config(self, val_one, val_two, val_three):
-        self.rotor_one.set_current_value(val_one)
-        self.rotor_two.set_current_value(val_two)
-        self.rotor_three.set_current_value(val_three)
+        # This if else statements are used to check if the values are in the propriate
+        # range, so the code will be more bug free
+        if (1 <= val_one <= 26):
+            self.rotor_one.set_current_value(val_one)
+        else:
+            raise ValueError('The value should be in appropriate range')
+            
+        if (1 <= val_two <= 26):
+            self.rotor_two.set_current_value(val_one)
+        else:
+            raise ValueError('The value should be in appropriate range')
+        
+        if (1 <= val_three <= 26):
+            self.rotor_three.set_current_value(val_one)
+        else:
+            raise ValueError('The value should be in appropriate range')
         
         self.reset_letters()
         

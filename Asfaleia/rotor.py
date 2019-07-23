@@ -12,9 +12,9 @@ class Rotor:
     #, and have a base shuffle value of 1, it also have a next rotor
     #parameter which is a rotor which value would increase by one,
     #if the current rotor reaches its 26 value
-    def __init__(self, nr):
+    def __init__(self, nr, val):
         self.num_of_values = 26
-        self.current_value = 1
+        self.current_value = val
         self.next_rotor = nr
         
     #Function is used to increase a value of the rotor

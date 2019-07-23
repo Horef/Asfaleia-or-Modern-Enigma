@@ -9,8 +9,8 @@ from rotor import Rotor
 
 class Rotor_Two(Rotor):
     
-    def __init__(self, nr):
-        super().__init__(nr)
+    def __init__(self, nr, val):
+        super().__init__(nr, val)
         self.val_one_shuffler = [('f','i'), ('z','p'), ('m','b'), 
                                  ('u','v'), ('c','h'), ('g','e'), 
                                  ('l','t'), ('a','j'), ('n','q'), 

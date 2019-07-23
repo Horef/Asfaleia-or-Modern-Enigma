@@ -16,9 +16,9 @@ There are different function you can use:
 """
 from asfaleia_machine import Asfaleia_Machine
 
-current_machine = Asfaleia_Machine()
-encoded_sentence = current_machine.encode('Hi!')
+c_m = Asfaleia_Machine()
+encoded_sentence = c_m.encode('Hi!')
 
-current_machine.reset()
-decoded_sentence = current_machine.decode(encoded_sentence)
+c_m.reset()
+decoded_sentence = c_m.decode(encoded_sentence)
 print(decoded_sentence)

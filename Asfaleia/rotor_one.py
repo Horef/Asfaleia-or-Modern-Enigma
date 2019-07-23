@@ -9,9 +9,9 @@ from rotor import Rotor
 #Class for a first rotor
 class Rotor_One(Rotor):
     
-    def __init__(self, nr):
+    def __init__(self, nr, val):
         #It starts its life from calling a parent func of init
-        super().__init__(nr)
+        super().__init__(nr, val)
         #From here are going lists of all the tuples that used to shuffle the letters
         self.val_one_shuffler = [('u','d'), ('e','a'), ('s','g'), 
                                  ('r','p'), ('h','v'), ('b','l'), 
