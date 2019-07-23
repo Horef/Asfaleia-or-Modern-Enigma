@@ -158,8 +158,8 @@ class Asfaleia_Machine():
         self.reset_letters()
         
     #Function used reset the machine to its starting form(init)
-    def reset(self):
-        self.__init__()
+    def reset(self, r_one=1, r_two=1, r_three=1, r_four=1, r_five=1):
+        self.__init__(r_one, r_two, r_three, r_four, r_five)
         
     #Function used to reset letters
     def reset_letters(self):
