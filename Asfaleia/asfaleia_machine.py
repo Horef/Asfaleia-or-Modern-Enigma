@@ -50,33 +50,33 @@ class Asfaleia_Machine():
         self.rotor_two = Rotor_Five(self.rotor_three, r_two)
         self.rotor_one = Rotor_Three(self.rotor_two, r_one)
         
-        #Swithers are created and used here
+        #Swithers are created here
         self.switcher_one = Switcher()
-        self.switcher_one.switch(self.letters, 'a', 'r')
-        
         self.switcher_two = Switcher()
-        self.switcher_two.switch(self.letters, 'k', 'l')
-         
         self.switcher_three = Switcher()
-        self.switcher_three.switch(self.letters, 't', 'v')
-         
         self.switcher_four = Switcher()
-        self.switcher_four.switch(self.letters, 'm', 'j')
-        
         self.switcher_five = Switcher()
-        self.switcher_five.switch(self.letters, 'g', 'z')
-        
         self.switcher_six = Switcher()
-        self.switcher_six.switch(self.letters, 'b', 'c')
-        
         self.switcher_seven = Switcher()
-        self.switcher_seven.switch(self.letters, 'e', 'y')
-        
         self.switcher_eight = Switcher()
-        self.switcher_eight.switch(self.letters, 'o', 'n')
-        
         self.switcher_nine = Switcher()
+        self.switcher_ten = Switcher()
+        
+        #Switchers are used
+        self.use_switchers()
+        
+    #Function used to use switchers
+    def use_switchers(self):        
+        self.switcher_one.switch(self.letters, 'a', 'r')
+        self.switcher_two.switch(self.letters, 'k', 'l')
+        self.switcher_three.switch(self.letters, 't', 'v')
+        self.switcher_four.switch(self.letters, 'm', 'j')
+        self.switcher_five.switch(self.letters, 'g', 'z')
+        self.switcher_six.switch(self.letters, 'b', 'c')
+        self.switcher_seven.switch(self.letters, 'e', 'y')        
+        self.switcher_eight.switch(self.letters, 'o', 'n')
         self.switcher_nine.switch(self.letters, 's', 'k')
+        self.switcher_ten.switch(self.letters, 'w', 'q')
         
     #Function used to uncode a sentence 
     def encode(self, sentence):
@@ -135,31 +135,26 @@ class Asfaleia_Machine():
                     decoded_message.append(x)
         
         return ''.join(decoded_message)
-            
-    #Function used to manually change the values of rotors
-    def config(self, val_one, val_two, val_three):
-        # This if else statements are used to check if the values are in the propriate
-        # range, so the code will be more bug free
-        if (1 <= val_one <= 26):
-            self.rotor_one.set_current_value(val_one)
-        else:
-            raise ValueError('The value should be in appropriate range')
-            
-        if (1 <= val_two <= 26):
-            self.rotor_two.set_current_value(val_one)
-        else:
-            raise ValueError('The value should be in appropriate range')
-        
-        if (1 <= val_three <= 26):
-            self.rotor_three.set_current_value(val_one)
-        else:
-            raise ValueError('The value should be in appropriate range')
-        
-        self.reset_letters()
         
     #Function used reset the machine to its starting form(init)
-    def reset(self, r_one=1, r_two=1, r_three=1, r_four=1, r_five=1):
-        self.__init__(r_one, r_two, r_three, r_four, r_five)
+    def _set(self, r_one=1, r_two=1, r_three=1, r_four=1, r_five=1):
+        self.reset_letters()
+        self.use_switchers()
+        
+        if (1 <= r_one <= 26):
+            self.rotor_one.set_current_value(r_one)
+        else:
+            raise ValueError('The value should be in appropriate range')
+            
+        if (1 <= r_two <= 26):
+            self.rotor_two.set_current_value(r_two)
+        else:
+            raise ValueError('The value should be in appropriate range')
+        
+        if (1 <= r_three <= 26):
+            self.rotor_three.set_current_value(r_three)
+        else:
+            raise ValueError('The value should be in appropriate range')
         
     #Function used to reset letters
     def reset_letters(self):
